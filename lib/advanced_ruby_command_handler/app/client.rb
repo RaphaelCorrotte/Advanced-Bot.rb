@@ -3,6 +3,8 @@
 require "discordrb"
 require "fileutils"
 require "yaml"
+require_relative "command_handler"
+require_relative "event_handler"
 
 module AdvancedRubyCommandHandler
   class Client < Discordrb::Bot
@@ -31,6 +33,9 @@ module AdvancedRubyCommandHandler
       end
 
       super(:token => @config[:token])
+
+      @commands = AdvancedRubyCommandHandler::CommandHandler.load_commands(self)
+      events = AdvancedRubyCommandHandler::EventHandler.load_events(self)
     end
 
     def run

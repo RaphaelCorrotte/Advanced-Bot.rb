@@ -2,4 +2,8 @@
 
 require_relative "../lib/advanced_ruby_command_handler"
 
-CommandHandler.new(:commands_dir => "tests/commands", :events_dir => "tests/events", :config_file => "tests/config.yml").run
+client = CommandHandler.new(:commands_dir => "tests/commands", :events_dir => "tests/events", :config_file => "tests/config.yml")
+
+AdvancedRubyCommandHandler::FILE_LOGGER.write("Test!", :errors)
+
+puts client.commands
