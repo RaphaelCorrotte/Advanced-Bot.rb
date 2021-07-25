@@ -37,8 +37,8 @@ module AdvancedRubyCommandHandler
       super(:token => @config[:token])
 
       @commands = AdvancedRubyCommandHandler::CommandHandler.load_commands(self)
-      events = AdvancedRubyCommandHandler::EventHandler.load_events(self)
-      events.each do |event|
+      AdvancedRubyCommandHandler::EventHandler.load_events(self)
+                                              .each do |event|
         Events.method(event).call(self)
       end
     end
