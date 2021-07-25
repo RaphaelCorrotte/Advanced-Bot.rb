@@ -26,7 +26,7 @@ module AdvancedRubyCommandHandler
       :warn => :yellow,
       :check => :green
     }.freeze
-    def initialize(mode = :console, write_targets = { :errors => "logs/errors.txt", :information => "logs/infos.txt" })
+    def initialize(mode = :console, write_targets = { :errors => "logs/errors.txt", :informations => "logs/infos.txt" })
       @mode = mode.to_sym
       @write_targets = write_targets if @mode == :file
     end
@@ -35,7 +35,7 @@ module AdvancedRubyCommandHandler
       "#{COLORS[color]}#{message}\e[0m"
     end
 
-    def write(message, write_target = :information)
+    def write(message, write_target = :informations)
       return Logger.new(:console).warn("The file logs aren't available on #{@mode} mode") unless @mode == :file
 
       time = Time.now.strftime("%Y-%m-%d-%H:%M:%S")
@@ -44,7 +44,7 @@ module AdvancedRubyCommandHandler
 
       File.open(@write_targets[write_target], "w") unless File.exist? @write_targets[write_target]
 
-      File.open(@write_targets[write_target], "w+") do |file|
+      File.open(@write_targets[write_target], "a+") do |file|
         file.write("#{time} - #{write_target.to_s.upcase} : #{message}\n")
       end
     end
