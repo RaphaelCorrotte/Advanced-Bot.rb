@@ -7,7 +7,7 @@ module AdvancedRubyCommandHandler
     def self.load_commands(client)
       commands = []
       Dir.entries(client.commands_dir).each do |dir|
-        next if %w(. ..).include?(dir)
+        next if %w[. ..].include?(dir)
 
         Dir.entries("#{client.commands_dir}/#{dir}").each do |file|
           next if %w(. ..).include?(file)

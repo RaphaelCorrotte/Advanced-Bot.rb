@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    advanced_ruby_command_handler (0.1.0)
+    advanced_ruby_command_handler (0.1.2)
 
 GEM
   remote: https://rubygems.org/
@@ -72,4 +72,4 @@ DEPENDENCIES
   rubocop (~> 1.7)
 
 BUNDLED WITH
-   2.2.20
+   2.2.26

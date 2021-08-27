@@ -45,6 +45,14 @@ module AdvancedRubyCommandHandler
 
     def run
       @console_logger.info("Client login!")
+
+      Thread.new do
+        @console_logger.info("Type '.exit' to turn off the bot")
+        # @console_logger.info("Type '.reload' to reload the bot")
+
+        exit if $stdin.gets.chomp == ".exit"
+      end
+
       super.run
     end
   end

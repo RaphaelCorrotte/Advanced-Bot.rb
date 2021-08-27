@@ -7,18 +7,16 @@ module AdvancedRubyCommandHandler
     def self.load_events(client)
       events = []
       Dir.entries(client.events_dir).each do |file|
-        next if %w(. ..).include?(file)
+        next if %w[. ..].include?(file)
 
         load "#{client.events_dir}/#{file}"
         events << File.basename(file, ".rb")
       end
 
-      Dir.entries("lib/advanced_ruby_command_handler/defaults/events").each do |file|
-        next if %w(. ..).include?(file)
-
+      Dir["#{File.dirname(__FILE__)}/defaults/events/*.rb"].each do |file|
         next if events.include?(File.basename(file, ".rb"))
 
-        load "lib/advanced_ruby_command_handler/defaults/events/#{file}"
+        require file
 
         events << File.basename(file, ".rb")
       end

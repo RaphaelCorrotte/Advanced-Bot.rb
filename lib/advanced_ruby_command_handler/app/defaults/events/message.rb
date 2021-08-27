@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../../app/utils"
+require_relative "../../utils"
 
 module Events
   def self.message(client)
