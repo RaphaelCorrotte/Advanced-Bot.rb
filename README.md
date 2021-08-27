@@ -1,3 +1,8 @@
+
+[![forthebadge](https://forthebadge.com/images/badges/made-with-ruby.svg)](https://forthebadge.com)
+
+[![Les Laboratoires Ruby](https://invidget.switchblade.xyz/4P7XcmbDnt)](https://discord.gg/4P7XcmbDnt)
+
 # AdvancedRubyCommandHandler
 ## Installation
 
