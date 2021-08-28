@@ -13,7 +13,7 @@ module AdvancedRubyCommandHandler
         events << File.basename(file, ".rb")
       end
 
-      Dir["#{File.dirname(__FILE__)}/defaults/events/*.rb"].each do |file|
+      Dir["#{File.dirname(__FILE__)}/defaults/events/*.rb"].sort.each do |file|
         next if events.include?(File.basename(file, ".rb"))
 
         require file
