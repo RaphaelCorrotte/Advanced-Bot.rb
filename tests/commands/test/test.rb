@@ -5,8 +5,13 @@ require_relative "../../../lib/advanced_ruby_command_handler/app/command"
 module Commands
   def self.test
     CommandHandler::Command.new({
-                                  :name => "test"
-                                }) do |message, client|
+                                  :name => "test",
+                                  :aliases => ["t"],
+                                  :description => "Une commande pour faire des tests!",
+                                  :args => false,
+                                  :use_example => :default,
+                                  :category => :default
+                                }) do |message, _client|
       message.respond "Command test!"
     end
   end
