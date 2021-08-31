@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "../../../lib/advanced_ruby_command_handler/app/command"
+require_relative "../../../lib/advanced_ruby_command_handler/app/utils"
 
 module Commands
   def self.test
@@ -12,7 +13,7 @@ module Commands
                                   :use_example => :default,
                                   :category => :default
                                 }) do |message, _client|
-      message.respond "Command test!"
+      message.respond "Test"
     end
   end
 end

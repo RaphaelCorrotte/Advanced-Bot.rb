@@ -57,7 +57,6 @@ module AdvancedRubyCommandHandler
         puts "[#{console_color(:magenta, time)}] - [#{console_color(color, mode.to_s.upcase)}] : #{message.to_s}"
       end
     end
-
     private :console_color
   end
 end

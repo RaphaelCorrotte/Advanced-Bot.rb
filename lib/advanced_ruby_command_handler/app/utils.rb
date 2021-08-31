@@ -7,5 +7,13 @@ module CommandHandler
 
       false
     end
+
+    # Do NOT use that
+    # FIXME
+    def reload_files(dirs)
+      dirs.each do |dir|
+        Dir.glob("#{dir}/**/*.rb").each { |file| load file }
+      end
+    end
   end
 end

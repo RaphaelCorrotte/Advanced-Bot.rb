@@ -11,7 +11,14 @@ module Events
 
       next unless command
 
-      command.run.call(message, client)
+      begin
+        command.run.call(message, client)
+      rescue => e
+        client.console_logger.error(e)
+        client.file_logger.write(e, :errors)
+      ensure
+        client.console_logger.info("Command '#{command.props[:name]}' used by #{message.author.username}")
+      end
     end
   end
 end

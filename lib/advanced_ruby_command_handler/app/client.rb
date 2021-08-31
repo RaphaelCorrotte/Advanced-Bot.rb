@@ -5,6 +5,7 @@ require "fileutils"
 require "yaml"
 require_relative "command_handler"
 require_relative "event_handler"
+require_relative "utils"
 
 module AdvancedRubyCommandHandler
   class Client < Discordrb::Bot
@@ -50,7 +51,7 @@ module AdvancedRubyCommandHandler
         @console_logger.info("Type '.exit' to turn off the bot")
         # @console_logger.info("Type '.reload' to reload the bot")
         loop do
-          exit if $stdin.gets.chomp == ".exit"
+          Process.exit!(true) if $stdin.gets.chomp == ".exit"
 
         end
       end
