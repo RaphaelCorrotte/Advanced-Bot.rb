@@ -20,7 +20,6 @@ module CommandHandler
       props[:category] ||= nil
       props[:user_permissions] ||= []
       props[:client_permissions] ||= []
-      
       if props[:client_permissions].instance_of?(Array) && props[:client_permissions].empty?
         props[:client_permissions].push(
           :add_reactions,

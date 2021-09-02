@@ -13,7 +13,7 @@ module Events
 
       begin
         command.run.call(message, client)
-      rescue => e
+      rescue StandardError => e
         client.console_logger.error(e)
         client.file_logger.write(e, :errors)
       ensure

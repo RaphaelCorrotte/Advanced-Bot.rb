@@ -42,6 +42,8 @@ module AdvancedRubyCommandHandler
                                               .each do |event|
         Events.method(event).call(self)
       end
+
+      at_exit { @console_logger.info("Application exited") }
     end
 
     def run
@@ -52,7 +54,6 @@ module AdvancedRubyCommandHandler
         # @console_logger.info("Type '.reload' to reload the bot")
         loop do
           Process.exit!(true) if $stdin.gets.chomp == ".exit"
-
         end
       end
 
