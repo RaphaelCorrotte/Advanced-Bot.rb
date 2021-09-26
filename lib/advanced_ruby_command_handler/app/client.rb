@@ -35,7 +35,7 @@ module AdvancedRubyCommandHandler
         raise "'#{prop}' missing or empty"
       end
 
-      super(:token => @config[:token])
+      super(:token => @config[:token], :ignore_bots => true)
 
       @commands = AdvancedRubyCommandHandler::CommandHandler.load_commands(self)
       AdvancedRubyCommandHandler::EventHandler.load_events(self)
