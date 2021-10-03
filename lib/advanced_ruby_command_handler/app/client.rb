@@ -51,7 +51,6 @@ module AdvancedRubyCommandHandler
 
       Thread.new do
         @console_logger.info("Type '.exit' to turn off the bot")
-        # @console_logger.info("Type '.reload' to reload the bot")
         loop do
           Process.exit!(true) if $stdin.gets.chomp == ".exit"
         end
