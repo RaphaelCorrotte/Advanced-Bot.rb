@@ -10,7 +10,7 @@ module CommandHandler
     end
 
     def load_proprieties(props)
-      return props unless props.instance_of?(Hash)
+      return props unless props.is_a?(Hash)
 
       props[:aliases] ||= nil
       props[:description] ||= nil
@@ -18,9 +18,11 @@ module CommandHandler
       props[:strict_args] ||= false
       props[:use_example] ||= nil
       props[:category] ||= nil
+      props[:server_only] ||= false
+      props[:owner_only] ||= false
       props[:user_permissions] ||= []
       props[:client_permissions] ||= []
-      if props[:client_permissions].instance_of?(Array) && props[:client_permissions].empty?
+      if props[:client_permissions].is_a?(Array) && props[:client_permissions].empty?
         props[:client_permissions].push(
           :add_reactions,
           :send_messages,
@@ -47,7 +49,9 @@ module CommandHandler
         :use_example => props[:use_example],
         :category => props[:category],
         :user_permissions => props[:user_permissions],
-        :client_permissions => props[:client_permissions]
+        :client_permissions => props[:client_permissions],
+        :owner_only => props[:owner_only],
+        :server_only => props[:server_only]
       ]
     end
     private :load_proprieties
