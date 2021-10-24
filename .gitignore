@@ -10,3 +10,4 @@
 *.gem
 *.yml
 /sig/
+*.env
