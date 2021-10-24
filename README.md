@@ -1,7 +1,7 @@
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-ruby.svg)](https://forthebadge.com)
 
-[![Les Laboratoires Ruby](https://invidget.switchblade.xyz/4P7XcmbDnt)](https://discord.gg/4P7XcmbDnt)
+[Les Laboratoires Ruby](https://discord.gg/4P7XcmbDnt)
 
 # AdvancedRubyCommandHandler
 ## Installation
@@ -32,13 +32,20 @@ require "advanced_ruby_command_handler"
 Then, initialize the command handler. Specifying the directories and the config file path
 
 ```rb
-client = CommandHandler.new(commands_dir: "src/commands", events_dir: "src/events", config_file: "src/private/config.yml")
+command_handler = CommandHandler.new(Hash[
+                                       :commands_dir => "src/commands/",
+                                       :events_dir => "src/events/",
+                                       :commands_module_name => "Commands",
+                                       :events_module_name => "Events"
+                                     ])
+                                .load_commands
+                                .load_events
 ```
 Note: if these files dose not exist, the command handler will create them
 
 And run the bot:
 ```ruby
-client.run
+command_handler.client.run
 ```
 
 ### Events&Commands
@@ -52,11 +59,11 @@ And use the following template:
 # frozen_string_literal: true
 
 module Events
-  def self.<event>(client)
-    client.<event> do
-      client.console_logger.info("Event!")
-    end
-  end
+  # self.<event_name>
+  def self.message(command_handler)
+    Event.new(:message, command_handler.client) do
+      Logger.check("Ready!")
+    end  end
 end
 ```
 Now, when the event will be emitted, the program will puts "Event!"
@@ -67,17 +74,17 @@ In these directories, you can create ruby files for commands, here's an example:
 ```ruby
 # frozen_string_literal: true
 
-require_relative "advanced_ruby_command_handler"
-
 module Commands
-  def self.hello
-    CommandHandler::Command.new({
-                                  :name => "hello"
-                                }) do |message, client|
-      message.respond "Hello Discord!"
+  # self.<command_name>
+  def self.ping
+    Command.new(Hash[
+                  :name => "ping"
+                ]) do |client, message|
+      message.respond "Pong!"
     end
   end
 end
+
 ```
 
 Now you can create events and commands ! ;)
