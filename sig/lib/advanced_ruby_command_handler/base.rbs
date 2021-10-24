@@ -1,0 +1,21 @@
+class BaseDatabase
+  attr_reader client: Mongo::Client
+
+  def initialize: (Mongo::CLient client) -> void
+
+  def to_s: () -> String
+
+  def options: () -> Hash|String
+end
+
+class BaseClient < Discordrb::Bot
+  def initialize: () -> void
+end
+
+class BaseCommandHandler
+  attr_accessor commands_dir: String
+
+  attr_accessor events_dir: String
+
+  def initialize: (Hash options) -> void
+end
