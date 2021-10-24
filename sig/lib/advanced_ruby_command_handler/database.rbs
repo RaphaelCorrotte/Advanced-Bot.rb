@@ -1,0 +1,7 @@
+class Database < BaseDatabase
+  attr_accessor database: Mongo::Client
+
+  attr_accessor path: String
+
+  def initialize: (String path) -> void
+end

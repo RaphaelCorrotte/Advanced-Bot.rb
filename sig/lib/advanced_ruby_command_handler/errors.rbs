@@ -1,0 +1,19 @@
+module Errors
+  class LoadCommandError < RuntimeError
+    attr_reader command: String
+
+    def initialize: (String command, ?String? message) -> void
+  end
+
+  class LoadEventError < RuntimeError
+    attr_reader event: String
+
+    def initialize: (String event, ?String? message) -> void
+  end
+
+  class MissingEnvironmentVariable < RuntimeError
+    attr_reader environment_variable: String
+
+    def initialize: (String environment_variable, ?String? message) -> void
+  end
+end
