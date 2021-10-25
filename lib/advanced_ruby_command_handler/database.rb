@@ -5,12 +5,12 @@ require File.expand_path("base", File.dirname(__FILE__))
 
 module AdvancedRubyCommandHandler
   class Database < BaseDatabase
-    attr_accessor :database, :path
+    attr_accessor :client, :path
 
     def initialize(path)
       @path = path
-      @database = Mongo::Client.new(path)
-      super(@database)
+      @client = Mongo::Client.new(path)
+      super(@client)
     end
   end
 end
