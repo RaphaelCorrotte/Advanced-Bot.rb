@@ -29,7 +29,7 @@ Firstly, you have to create a ruby file, where you put the followwing line:
 require "advanced_ruby_command_handler"
 ```
 
-Then, initialize the command handler. Specifying the directories and the config file path
+Then, initialize the command handler. Specifying the directories and the modules.
 
 ```rb
 command_handler = CommandHandler.new(Hash[
@@ -41,7 +41,7 @@ command_handler = CommandHandler.new(Hash[
                                 .load_commands
                                 .load_events
 ```
-Note: if these files dose not exist, the command handler will create them
+Note: if these directories dosen't exist, the command handler will create them
 
 And run the bot:
 ```ruby
@@ -52,26 +52,29 @@ command_handler.client.run
 
 The command handler have base events as message or ready, but you can create your owns events (in events directory).
 
-Create a file with the name of your event (see https://www.rubydoc.info/github/meew0/discordrb/Discordrb/Events)
+Create a file with the name of your event (see [https://www.rubydoc.info/github/meew0/discordrb/Discordrb/Events](the doc))
 
 And use the following template:
 ```ruby
+# src/events/message.rb
 # frozen_string_literal: true
 
 module Events
   # self.<event_name>
   def self.message(command_handler)
-    Event.new(:message, command_handler.client) do
-      Logger.check("Ready!")
-    end  end
+    Event.new(:message, command_handler.client) do |message|
+      Logger.check("Message! : #{message.content}")
+    end
+   end
 end
 ```
-Now, when the event will be emitted, the program will puts "Event!"
+Now, when a message is sent, the program will puts "Message! : 'message content'"
 
 If you want to add some commands in your bot, you can create sub directories in your command directory.
 In these directories, you can create ruby files for commands, here's an example:
 
 ```ruby
+# src/commands/utils/ping.rb
 # frozen_string_literal: true
 
 module Commands
